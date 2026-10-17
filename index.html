@@ -52,20 +52,21 @@
 
       <section class="fullElem todo-list-fullpage">
         <button class="back-button" id="0">Back</button>
-        <h2>Your Personalized Task List</h2>
+        <h2>Your Personalised Task List</h2>
         <div class="todo-container">
           <div class="addTask">
             <form>
-              <input type="text" placeholder="Enter Task here">
-              <textarea name="" placeholder="Enter Details" id=""></textarea>
+              <input autocomplete="off" type="text" id="task-input" placeholder="Enter Task here" name="text">
+              <textarea name="textarea" placeholder="Enter Details" rows="7" spellcheck="false"></textarea>
+              <div id="mark-box">
+                <input type="checkbox" name="checkbox" id="check">
+                <label for="check">Mark as Important</label>
+              </div>
               <button>Add Task</button>
             </form>
           </div>
           <div class="allTask">
-            <div class="task">
-              <h5>Yohohohho</h5>
-              <button>Mark as Completed</button>
-            </div>
+            
           </div>
         </div>
       </section>

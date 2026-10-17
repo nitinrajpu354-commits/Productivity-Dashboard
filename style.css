@@ -116,7 +116,7 @@ section.allElems {
 }
 
 .todo-list-fullpage {
-    display: block;
+    display: none;
 }
 
 .todo-list-fullpage h2 {
@@ -146,11 +146,12 @@ section.allElems {
     padding: 30px;
 }
 
-.todo-container .addTask form input {
+.todo-container .addTask form #task-input {
     padding: 15px 25px;
     width: 100%;
-    font-size: 25px;
-    background-color: var(--sec);
+    font-size: 22px;
+    background-color: var(--pri);
+    color: var(--sec);
     border-radius: 5px;
     border: none;
     outline: none;
@@ -158,27 +159,45 @@ section.allElems {
 }
 
 .todo-container .addTask form textarea {
-    height: 200px;
     padding: 15px 25px;
     width: 100%;
-    font-size: 25px;
-    background-color: var(--sec);
+    font-size: 22px;
+    background-color: var(--pri);
+    color: var(--sec);
     border-radius: 5px;
     border: none;
     outline: none;
     margin-bottom: 20px;
 }
 
+.todo-container .addTask form #mark-box {
+    width: 100%;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 0 5px;
+}
+
+form #mark-box input {
+    scale: 1.5;
+}
+
+form #mark-box label{
+    font-size: 18px;
+}
+
 .todo-container .addTask form button {
     padding: 15px 25px;
     width: 100%;
-    font-size: 25px;
-    font-weight: 800;
+    font-size: 22px;
+    font-weight: 600;
     background-color: var(--tri1);
     border-radius: 5px;
     border: none;
     outline: none;
-    margin-bottom: 20px;
     cursor: pointer;
     transition: all ease 0.2s;
 }
@@ -196,24 +215,52 @@ section.allElems {
     flex-direction: column;
     align-items: flex-start;
     padding: 30px;
+    overflow: auto;
+}
+
+.allTask::-webkit-scrollbar {
+    display: none;
 }
 
 .task {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     width: 100%;
     background-color: var(--pri);
     padding: 15px 30px;
+    margin-bottom: 10px;
     border-radius: 10px;
 }
 
-.task h5 {
+.task summary {
     color: var(--sec);
-    font-size: 25px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.task summary span {
+    background-color: red;
+    font-size: 10px;
+    padding: 3px 6px;
+    border-radius: 10px;
+    color: var(--pri);
+    margin-left: 5px;
+}
+
+.task summary span.true {
+    opacity: 1;
+}
+
+.task summary span.false {
+    opacity: 0;
+}
+
+.task p {
+    color: var(--sec);
+    margin-top: 15px;
+    font-size: 18px;
 }
 
 .task button {
+    margin-top: 15px;
     padding: 15px 30px;
     color: var(--pri);
     background-color: green;
@@ -221,4 +268,5 @@ section.allElems {
     font-size: 12px;
     border-radius: 5px;
     font-weight: 600;
+    cursor: pointer;
 }
