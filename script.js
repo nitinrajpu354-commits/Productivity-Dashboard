@@ -23,10 +23,9 @@ let taskInput = document.querySelector(".addTask form #task-input");
 let taskDetailsInput = document.querySelector(".addTask form textarea");
 let taskCheckbox = document.querySelector(".addTask form #check");
 
-
 let currentTask = [];
 
-if(localStorage.getItem("currentTask")) {
+if (localStorage.getItem("currentTask")) {
   currentTask = JSON.parse(localStorage.getItem("currentTask"));
 } else {
   console.log("Task list is empty");
@@ -38,16 +37,22 @@ function showTasks() {
   let sum = "";
 
   currentTask.forEach(function (elem) {
-    sum += `<details class="task">
-              <summary>
-                ${elem.task}
-                <span class="${elem.imp}">imp</span>
-              </summary>
+    sum += `
+        <details class="task">
+            <summary>
+                <div class="task-left">
+                    <span class="task-title">${elem.task}</span>
+                    <span class="${elem.imp}">imp</span>
+                </div>
 
-              <p>${elem.details}</p>
-              
-              <button>Mark as Completed</button>
-            </details>`;
+                <i class="ri-arrow-right-wide-line"></i>
+            </summary>
+
+            <p>${elem.details}</p>
+
+            <button>Mark as Completed</button>
+        </details>
+    `;
   });
 
   allTask.innerHTML = sum;
@@ -61,7 +66,7 @@ form.addEventListener("submit", function (evt) {
     task: taskInput.value,
     details: taskDetailsInput.value,
     imp: taskCheckbox.checked,
-  })
+  });
 
   localStorage.setItem("currentTask", JSON.stringify(currentTask));
 
@@ -70,4 +75,3 @@ form.addEventListener("submit", function (evt) {
   taskCheckbox.checked = false;
   showTasks();
 });
-

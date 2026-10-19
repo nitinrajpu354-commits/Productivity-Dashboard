@@ -231,26 +231,48 @@ form #mark-box label{
 }
 
 .task summary {
-    color: var(--sec);
-    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
     cursor: pointer;
 }
 
-.task summary span {
+.task summary::-webkit-details-marker {
+    display: none;
+}
+
+.task-left {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.task-title {
+    color: var(--sec);
+    font-size: 22px;
+}
+
+.task-left span.true {
     background-color: red;
     font-size: 10px;
     padding: 3px 6px;
     border-radius: 10px;
     color: var(--pri);
-    margin-left: 5px;
 }
 
-.task summary span.true {
-    opacity: 1;
-}
-
-.task summary span.false {
+.task-left span.false {
     opacity: 0;
+}
+
+.task summary i {
+    color: var(--sec);
+    font-size: 25px;
+    transition: transform 0.2s ease;
+}
+
+.task[open] summary i {
+    transform: rotate(90deg);
 }
 
 .task p {
