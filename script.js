@@ -18,26 +18,27 @@ function showFeatures() {
 
 showFeatures();
 
-let form = document.querySelector(".addTask form");
-let taskInput = document.querySelector(".addTask form #task-input");
-let taskDetailsInput = document.querySelector(".addTask form textarea");
-let taskCheckbox = document.querySelector(".addTask form #check");
+function todoList() {
+  let form = document.querySelector(".addTask form");
+  let taskInput = document.querySelector(".addTask form #task-input");
+  let taskDetailsInput = document.querySelector(".addTask form textarea");
+  let taskCheckbox = document.querySelector(".addTask form #check");
 
-let currentTask = [];
+  let currentTask = [];
 
-if (localStorage.getItem("currentTask")) {
-  currentTask = JSON.parse(localStorage.getItem("currentTask"));
-} else {
-  console.log("Task list is empty");
-}
+  if (localStorage.getItem("currentTask")) {
+    currentTask = JSON.parse(localStorage.getItem("currentTask"));
+  } else {
+    console.log("Task list is empty");
+  }
 
-function showTasks() {
-  let allTask = document.querySelector(".todo-container .allTask");
+  function showTasks() {
+    let allTask = document.querySelector(".todo-container .allTask");
 
-  let sum = "";
+    let sum = "";
 
-  currentTask.forEach(function (elem) {
-    sum += `
+    currentTask.forEach(function (elem, idx) {
+      sum += `
         <details class="task">
             <summary>
                 <div class="task-left">
@@ -50,28 +51,50 @@ function showTasks() {
 
             <p>${elem.details}</p>
 
-            <button>Mark as Completed</button>
+            <button id=${idx}>Mark as Completed</button>
         </details>
     `;
-  });
+    });
 
-  allTask.innerHTML = sum;
-}
-showTasks();
-
-form.addEventListener("submit", function (evt) {
-  evt.preventDefault();
-
-  currentTask.push({
-    task: taskInput.value,
-    details: taskDetailsInput.value,
-    imp: taskCheckbox.checked,
-  });
-
-  localStorage.setItem("currentTask", JSON.stringify(currentTask));
-
-  taskInput.value = "";
-  taskDetailsInput.value = "";
-  taskCheckbox.checked = false;
+    allTask.innerHTML = sum;
+  }
   showTasks();
-});
+
+  form.addEventListener("submit", function (evt) {
+    evt.preventDefault();
+
+    currentTask.push({
+      task: taskInput.value,
+      details: taskDetailsInput.value,
+      imp: taskCheckbox.checked,
+    });
+
+    localStorage.setItem("currentTask", JSON.stringify(currentTask));
+
+    showTasks();
+    markTaskCompleted();
+
+    taskInput.value = "";
+    taskDetailsInput.value = "";
+    taskCheckbox.checked = false;
+  });
+
+  function markTaskCompleted() {
+    let markCompletedBtn = document.querySelectorAll(".task button");
+
+    markCompletedBtn.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        currentTask.splice(Number(btn.id), 1);
+
+        localStorage.setItem("currentTask", JSON.stringify(currentTask));
+
+        showTasks();
+        markTaskCompleted();
+      });
+    });
+  }
+
+  markTaskCompleted();
+}
+
+todoList();

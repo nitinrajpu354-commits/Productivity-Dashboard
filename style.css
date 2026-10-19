@@ -115,10 +115,6 @@ section.allElems {
     scale: 0.95;
 }
 
-.todo-list-fullpage {
-    display: none;
-}
-
 .todo-list-fullpage h2 {
     font-size: 50px;
 }
@@ -291,4 +287,8 @@ form #mark-box label{
     border-radius: 5px;
     font-weight: 600;
     cursor: pointer;
+}
+
+.task button:active {
+    scale: 0.97;
 }
