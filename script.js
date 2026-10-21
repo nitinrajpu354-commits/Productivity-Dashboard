@@ -1,7 +1,7 @@
 function showFeatures() {
-  let allElems = document.querySelectorAll(".elem");
-  let fullElemPage = document.querySelectorAll(".fullElem");
-  let fullElemPageBackButton = document.querySelectorAll(".back-button");
+  const allElems = document.querySelectorAll(".elem");
+  const fullElemPage = document.querySelectorAll(".fullElem");
+  const fullElemPageBackButton = document.querySelectorAll(".back-button");
 
   allElems.forEach(function (elem) {
     elem.addEventListener("click", function () {
@@ -19,10 +19,10 @@ function showFeatures() {
 showFeatures();
 
 function todoList() {
-  let form = document.querySelector(".addTask form");
-  let taskInput = document.querySelector(".addTask form #task-input");
-  let taskDetailsInput = document.querySelector(".addTask form textarea");
-  let taskCheckbox = document.querySelector(".addTask form #check");
+  const form = document.querySelector(".addTask form");
+  const taskInput = document.querySelector(".addTask form #task-input");
+  const taskDetailsInput = document.querySelector(".addTask form textarea");
+  const taskCheckbox = document.querySelector(".addTask form #check");
 
   let currentTask = [];
 
@@ -33,7 +33,7 @@ function todoList() {
   }
 
   function showTasks() {
-    let allTask = document.querySelector(".todo-container .allTask");
+    const allTask = document.querySelector(".todo-container .allTask");
 
     let sum = "";
 
@@ -80,7 +80,7 @@ function todoList() {
   });
 
   function markTaskCompleted() {
-    let markCompletedBtn = document.querySelectorAll(".task button");
+    const markCompletedBtn = document.querySelectorAll(".task button");
 
     markCompletedBtn.forEach(function (btn) {
       btn.addEventListener("click", function () {
@@ -98,3 +98,17 @@ function todoList() {
 }
 
 todoList();
+
+const dayPlanner = document.querySelector(".day-planner")
+const hours = Array.from({length : 18}, (_, idx) => `${6 + idx}:00 - ${7+idx}:00`);
+
+let wholeDay = ""
+
+hours.forEach(function(elem) {
+  wholeDay += `<div class="day-planner-time">
+            <p>${elem}</p>
+            <input autocomplete="off" type="text" placeholder="...">
+          </div>`
+})
+
+dayPlanner.innerHTML = wholeDay;
