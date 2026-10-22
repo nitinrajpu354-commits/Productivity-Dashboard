@@ -293,10 +293,6 @@ form #mark-box label{
     scale: 0.97;
 }
 
-.daily-planner-fullpage {
-    display: block;
-}
-
 .daily-planner-fullpage h2 {
     font-size: 50px;
 }
@@ -331,7 +327,8 @@ form #mark-box label{
     position: absolute;
     top: 10%;
     left: 2%;
-    font-size: 15px;
+    font-size: 14px;
+    color: var(--tri1);
 }
 
 .day-planner .day-planner-time input {

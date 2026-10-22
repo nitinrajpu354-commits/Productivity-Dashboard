@@ -99,16 +99,39 @@ function todoList() {
 
 todoList();
 
-const dayPlanner = document.querySelector(".day-planner")
-const hours = Array.from({length : 18}, (_, idx) => `${6 + idx}:00 - ${7+idx}:00`);
+function dailyPlanner() {
+  const dayPlanner = document.querySelector(".day-planner");
 
-let wholeDay = ""
+  let dayPlanData = JSON.parse(localStorage.getItem("dayPlanData")) || {};
 
-hours.forEach(function(elem) {
-  wholeDay += `<div class="day-planner-time">
+  const hours = Array.from(
+    { length: 18 },
+    (_, idx) => `${6 + idx}:00 - ${7 + idx}:00`,
+  );
+
+  let wholeDay = "";
+
+  hours.forEach(function (elem, idx) {
+    let savedData = dayPlanData[idx] || "";
+    wholeDay += `<div class="day-planner-time">
             <p>${elem}</p>
-            <input autocomplete="off" type="text" placeholder="...">
-          </div>`
-})
+            <input id=${idx} autocomplete="off" type="text" placeholder="...">
+          </div>`;
+  });
 
-dayPlanner.innerHTML = wholeDay;
+  dayPlanner.innerHTML = wholeDay;
+
+  let dayPlannerInput = document.querySelectorAll(".day-planner input");
+
+  dayPlannerInput.forEach(function (elem) {
+    elem.value = dayPlanData[elem.id] || "";
+
+    elem.addEventListener("input", function () {
+      dayPlanData[elem.id] = elem.value;
+
+      localStorage.setItem("dayPlanData", JSON.stringify(dayPlanData));
+    });
+  });
+}
+
+dailyPlanner();
