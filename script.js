@@ -28,8 +28,6 @@ function todoList() {
 
   if (localStorage.getItem("currentTask")) {
     currentTask = JSON.parse(localStorage.getItem("currentTask"));
-  } else {
-    console.log("Task list is empty");
   }
 
   function showTasks() {
@@ -112,7 +110,6 @@ function dailyPlanner() {
   let wholeDay = "";
 
   hours.forEach(function (elem, idx) {
-    let savedData = dayPlanData[idx] || "";
     wholeDay += `<div class="day-planner-time">
             <p>${elem}</p>
             <input id=${idx} autocomplete="off" type="text" placeholder="...">
@@ -135,3 +132,36 @@ function dailyPlanner() {
 }
 
 dailyPlanner();
+
+function motivation() {
+  const quoteEl = document.querySelector(".motivation-2 h1");
+  const authorEl = document.querySelector(".author h2");
+
+  const API_URL = "https://dummyjson.com/quotes/random";
+
+  async function getQuote() {
+    quoteEl.textContent = "Loading...";
+    authorEl.textContent = "";
+
+    try {
+      const response = await fetch(API_URL);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      quoteEl.textContent = data.quote;
+      authorEl.textContent = data.author;
+    } catch (error) {
+      console.error("Failed to fetch quote:", error);
+      quoteEl.textContent = "Could not load a quote. Please try again.";
+      authorEl.textContent = "Author";
+    }
+  }
+
+  getQuote();
+}
+
+motivation();

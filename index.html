@@ -56,10 +56,21 @@
         <div class="todo-container">
           <div class="addTask">
             <form>
-              <input autocomplete="off" type="text" id="task-input" placeholder="Enter Task here" name="text">
-              <textarea name="textarea" placeholder="Enter Details" rows="7" spellcheck="false"></textarea>
+              <input
+                autocomplete="off"
+                type="text"
+                id="task-input"
+                placeholder="Enter Task here"
+                name="text"
+              />
+              <textarea
+                name="textarea"
+                placeholder="Enter Details"
+                rows="7"
+                spellcheck="false"
+              ></textarea>
               <div id="mark-box">
-                <input type="checkbox" name="checkbox" id="check">
+                <input type="checkbox" name="checkbox" id="check" />
                 <label for="check">Mark as Important</label>
               </div>
               <button>Add Task</button>
@@ -73,14 +84,24 @@
         <button class="back-button" id="1">Back</button>
         <h2>Plan your Day to be more productive</h2>
 
-        <div class="day-planner">
-          
-        </div>
+        <div class="day-planner"></div>
       </section>
 
       <section class="fullElem motivational-fullpage">
         <button class="back-button" id="2">Back</button>
-        <h1>Motivation</h1>
+        <div class="motivation-container">
+          <div class="motivation-wrapper">
+            <div class="motivation-1">
+              <h2>Quote of the Day</h2>
+            </div>
+            <div class="motivation-2">
+              <h1></h1>
+            </div>
+            <div class="author">
+              <h2></h2>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="fullElem pomodoro-fullpage">
@@ -92,7 +113,6 @@
         <button class="back-button" id="4">Back</button>
         <h1>Daily Goals</h1>
       </section>
-
     </div>
     <script src="script.js"></script>
   </body>
