@@ -381,9 +381,33 @@ form #mark-box label {
 }
 
 .motivation-wrapper .motivation-1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 25px;
   border-radius: 20px;
   background-color: var(--tri2);
+}
+
+.motivation-1 i {
+  display: inline-block;
+  font-size: 25px;
+  cursor: pointer;
+  transition: scale 0.2s;
+}
+
+.motivation-1 i:active {
+  scale: 0.9;
+}
+
+.motivation-1 i.spinning {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    rotate: 360deg;
+  }
 }
 
 .motivation-wrapper .motivation-1 h2 {

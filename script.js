@@ -136,32 +136,32 @@ dailyPlanner();
 function motivation() {
   const quoteEl = document.querySelector(".motivation-2 h1");
   const authorEl = document.querySelector(".author h2");
+  const reloadIcon = document.querySelector(".motivation-1 i");
 
   const API_URL = "https://dummyjson.com/quotes/random";
 
   async function getQuote() {
+    reloadIcon.classList.add("spinning");
     quoteEl.textContent = "Loading...";
     authorEl.textContent = "";
 
     try {
       const response = await fetch(API_URL);
-
-      if (!response.ok) {
-        throw new Error(`HTTP error: ${response.status}`);
-      }
+      if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
 
       const data = await response.json();
-
       quoteEl.textContent = data.quote;
       authorEl.textContent = data.author;
     } catch (error) {
       console.error("Failed to fetch quote:", error);
       quoteEl.textContent = "Could not load a quote. Please try again.";
-      authorEl.textContent = "Author";
+    } finally {
+      reloadIcon.classList.remove("spinning");
     }
   }
 
-  getQuote();
+  reloadIcon.addEventListener("click", getQuote);
+  getQuote(); // load a quote when the page opens
 }
 
 motivation();
