@@ -143,7 +143,7 @@ function motivation() {
   async function getQuote() {
     reloadIcon.classList.add("spinning");
     quoteEl.textContent = "Loading...";
-    authorEl.textContent = "";
+    authorEl.textContent = "Loading...";
 
     try {
       const response = await fetch(API_URL);
@@ -161,7 +161,7 @@ function motivation() {
   }
 
   reloadIcon.addEventListener("click", getQuote);
-  getQuote(); // load a quote when the page opens
+  getQuote();
 }
 
 motivation();

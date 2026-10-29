@@ -456,12 +456,22 @@ form #mark-box label {
 }
 
 .author {
+  min-width: 200px;
   padding: 25px;
   border-radius: 20px;
   background-color: var(--tri2);
+  margin-left: auto;
 }
 
 .author h2 {
   font-size: clamp(16px, 2.5vw, 20px);
-  text-align: right;
+  text-align: center;
+}
+
+.pomodoro-fullpage {
+  display: block
+}
+
+.pomodoro-fullpage h2 {
+  font-size: 50px;
 }
