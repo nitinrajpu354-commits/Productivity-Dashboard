@@ -53,13 +53,23 @@ nav {
 section.allElems {
   height: 100%;
   width: 100%;
-  padding: 40px;
-  padding-top: 80px;
+  padding: 30px;
+  position: absolute;
+}
+
+section.allElems .allFeatures {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-  position: absolute;
+}
+
+section.allElems header{
+  height: 275px;
+  width: 100%;
+  background-color: var(--tri2);
+  margin-bottom: 20px;
+  border-radius: 15px;
 }
 
 .elem {
