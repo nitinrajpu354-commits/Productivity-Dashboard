@@ -469,7 +469,6 @@ form #mark-box label {
 }
 
 .pomodoro-fullpage {
-  display: block;
   position: relative;
 }
 
@@ -505,4 +504,12 @@ form #mark-box label {
 .pomo-timer button:active {
   box-shadow: 0 0 0 black;
   scale: 0.98;
+}
+
+.pomo-timer[data-mode="break"] h1 {
+  color: var(--sec);
+}
+
+.mode-btn.active {
+  background-color: var(--tri2);
 }

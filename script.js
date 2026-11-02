@@ -166,20 +166,45 @@ function motivation() {
 
 motivation();
 
-let timer = document.querySelector(".pomo-timer h1");
-let startBtn = document.querySelector(".start-timer");
-let pauseBtn = document.querySelector(".pause-timer");
-let resetBtn = document.querySelector(".reset-timer");
+const pomo = document.querySelector(".pomo-timer");
+const timer = document.querySelector(".pomo-timer h1");
+const modeLabel = document.querySelector(".pomo-mode");
+const startBtn = document.querySelector(".start-timer");
+const pauseBtn = document.querySelector(".pause-timer");
+const resetBtn = document.querySelector(".reset-timer");
+const modeBtns = document.querySelectorAll(".mode-btn");
 
+const MODES = {
+  focus: { label: "Focus", seconds: 25 * 60 },
+  break: { label: "Break", seconds: 5 * 60 },
+};
+
+const AUTO_START = true;
+
+let currentMode = "focus";
 let timerInterval = null;
-let totalSeconds = 25 * 60;
 let endTime = null;
+let totalSeconds = MODES[currentMode].seconds;
 
 function updateTimer() {
-  let minutes = String(Math.floor(totalSeconds / 60)).padStart(2, "0");
-  let seconds = String(totalSeconds % 60).padStart(2, "0");
+  const minutes = String(Math.floor(totalSeconds / 60)).padStart(2, "0");
+  const seconds = String(totalSeconds % 60).padStart(2, "0");
 
   timer.textContent = `${minutes}:${seconds}`;
+}
+
+function setMode(mode) {
+  pauseTimer();
+  currentMode = mode;
+  totalSeconds = MODES[mode].seconds;
+
+  modeLabel.textContent = MODES[mode].label;
+  pomo.dataset.mode = mode;
+  modeBtns.forEach((btn) =>
+    btn.classList.toggle("active", btn.dataset.mode === mode)
+  );
+
+  updateTimer();
 }
 
 function startTimer() {
@@ -191,7 +216,7 @@ function startTimer() {
     totalSeconds = Math.max(0, Math.ceil((endTime - Date.now()) / 1000));
     updateTimer();
 
-    if (totalSeconds === 0) pauseTimer();
+    if (totalSeconds === 0) finishSession();
   }, 250);
 }
 
@@ -201,13 +226,22 @@ function pauseTimer() {
 }
 
 function resetTimer() {
-  pauseTimer();
-  totalSeconds = 25 * 60;
-  updateTimer();
+  setMode(currentMode);
+}
+
+function finishSession() {
+  const next = currentMode === "focus" ? "break" : "focus";
+  setMode(next);
+
+  if (AUTO_START) startTimer();
 }
 
 startBtn.addEventListener("click", startTimer);
 pauseBtn.addEventListener("click", pauseTimer);
 resetBtn.addEventListener("click", resetTimer);
 
-updateTimer();
+modeBtns.forEach((btn) =>
+  btn.addEventListener("click", () => setMode(btn.dataset.mode))
+);
+
+setMode("focus");
