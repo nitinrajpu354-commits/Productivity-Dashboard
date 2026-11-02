@@ -469,9 +469,40 @@ form #mark-box label {
 }
 
 .pomodoro-fullpage {
-  display: block
+  display: block;
+  position: relative;
 }
 
 .pomodoro-fullpage h2 {
   font-size: 50px;
+}
+
+.pomodoro-fullpage .pomo-timer {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.pomo-timer h1 {
+  font-size: 100px;
+  font-weight: 500;
+}
+
+.pomo-timer button {
+  background-color: var(--tri2);
+
+  padding: 10px 25px;
+  font-size: 20px;
+  border: none;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 5px 5px 0 black;
+  transition: all ease 0.1s;
+}
+
+.pomo-timer button:active {
+  box-shadow: 0 0 0 black;
+  scale: 0.98;
 }

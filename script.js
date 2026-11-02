@@ -165,3 +165,49 @@ function motivation() {
 }
 
 motivation();
+
+let timer = document.querySelector(".pomo-timer h1");
+let startBtn = document.querySelector(".start-timer");
+let pauseBtn = document.querySelector(".pause-timer");
+let resetBtn = document.querySelector(".reset-timer");
+
+let timerInterval = null;
+let totalSeconds = 25 * 60;
+let endTime = null;
+
+function updateTimer() {
+  let minutes = String(Math.floor(totalSeconds / 60)).padStart(2, "0");
+  let seconds = String(totalSeconds % 60).padStart(2, "0");
+
+  timer.textContent = `${minutes}:${seconds}`;
+}
+
+function startTimer() {
+  if (timerInterval !== null) return;
+
+  endTime = Date.now() + totalSeconds * 1000;
+
+  timerInterval = setInterval(() => {
+    totalSeconds = Math.max(0, Math.ceil((endTime - Date.now()) / 1000));
+    updateTimer();
+
+    if (totalSeconds === 0) pauseTimer();
+  }, 250);
+}
+
+function pauseTimer() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+}
+
+function resetTimer() {
+  pauseTimer();
+  totalSeconds = 25 * 60;
+  updateTimer();
+}
+
+startBtn.addEventListener("click", startTimer);
+pauseBtn.addEventListener("click", pauseTimer);
+resetBtn.addEventListener("click", resetTimer);
+
+updateTimer();
