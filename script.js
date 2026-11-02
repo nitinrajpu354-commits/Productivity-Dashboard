@@ -249,3 +249,29 @@ function pomodoroTimer() {
 }
 
 pomodoroTimer();
+
+let API_KEY = `24ba7b0d37590bfc9142b55a5d98e72a`
+
+async function getWeather(city) {
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log(data);
+
+    console.log(data.main.temp);                 
+    console.log(data.weather[0].description);    
+    console.log(data.main.humidity);             
+    console.log(data.wind.speed);                
+  } catch (error) {
+    console.error("Failed to fetch weather:", error);
+  }
+}
+
+getWeather("bangalore")
