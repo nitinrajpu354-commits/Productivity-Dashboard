@@ -252,6 +252,7 @@ pomodoroTimer();
 
 const dayTime = document.querySelector(".header1 h1");
 const dateHeader = document.querySelector(".header1 h2");
+const cityHeader = document.querySelector(".header1 h4");
 const tempHeader = document.querySelector(".header2 h2");
 const weatherHeader = document.querySelector(".header2 h4");
 const precipitation = document.querySelector(".header2 h3:nth-of-type(1) span");
@@ -283,13 +284,14 @@ async function getWeather(city) {
     precipitation.textContent = `${chanceOfRain}%`;
     humidity.textContent = `${current.main.humidity}%`;
     wind.textContent = `${Math.round(current.wind.speed * 3.6)} Km/h`;
+    cityHeader.textContent = city
   } catch (error) {
     console.error("Failed to fetch weather:", error);
     weatherHeader.textContent = "Weather unavailable";
   }
 }
 
-getWeather("Delhi");
+getWeather("New Delhi");
 
 function getTime() {
   const now = new Date();
