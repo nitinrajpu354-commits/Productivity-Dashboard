@@ -250,6 +250,8 @@ function pomodoroTimer() {
 
 pomodoroTimer();
 
+let dayTime = document.querySelector(".header1 h1");
+
 let API_KEY = `24ba7b0d37590bfc9142b55a5d98e72a`
 
 async function getWeather(city) {
@@ -265,13 +267,27 @@ async function getWeather(city) {
     const data = await response.json();
     console.log(data);
 
-    console.log(data.main.temp);                 
-    console.log(data.weather[0].description);    
-    console.log(data.main.humidity);             
-    console.log(data.wind.speed);                
   } catch (error) {
     console.error("Failed to fetch weather:", error);
   }
 }
 
-getWeather("bangalore")
+getWeather("New delhi")
+
+function getTime() {
+  const now = new Date();
+
+  const day = now.toLocaleDateString("en-IN", { weekday: "long" });
+
+  const time = now
+    .toLocaleTimeString("en-IN", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    }).toUpperCase();
+
+  dayTime.textContent = `${day}, ${time}`;
+}
+
+getTime();
+setInterval(getTime, 1000 * 30);
