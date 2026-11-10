@@ -73,8 +73,14 @@ section.allElems header{
 }
 
 header .header1 h1{
-  font-size: 70px;
+  font-size: 60px;
   font-weight: 700;
+  margin-bottom: 30px;
+}
+
+header .header1 h2{
+  font-size: 40px;
+  font-weight: 500;
 }
 
 header .header1 h4 {
@@ -90,6 +96,7 @@ header .header2 h2{
 header .header2 h4 {
   font-size: 25px;
   font-weight: 500;
+  margin-bottom: 30px;
 }
 
 header .header2 h3 {

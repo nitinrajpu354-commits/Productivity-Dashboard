@@ -250,34 +250,53 @@ function pomodoroTimer() {
 
 pomodoroTimer();
 
-let dayTime = document.querySelector(".header1 h1");
+const dayTime = document.querySelector(".header1 h1");
+const dateHeader = document.querySelector(".header1 h2");
+const tempHeader = document.querySelector(".header2 h2");
+const weatherHeader = document.querySelector(".header2 h4");
+const precipitation = document.querySelector(".header2 h3:nth-of-type(1) span");
+const humidity = document.querySelector(".header2 h3:nth-of-type(2) span");
+const wind = document.querySelector(".header2 h3:nth-of-type(3) span");
 
-let API_KEY = `24ba7b0d37590bfc9142b55a5d98e72a`
+const API_KEY = `24ba7b0d37590bfc9142b55a5d98e72a`;
+const BASE_URL = "https://api.openweathermap.org/data/2.5";
+
+async function fetchJSON(url) {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+  return response.json();
+}
 
 async function getWeather(city) {
+  const query = `q=${encodeURIComponent(city)}&units=metric&appid=${API_KEY}`;
+
   try {
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
-    );
+    const [current, forecast] = await Promise.all([
+      fetchJSON(`${BASE_URL}/weather?${query}`),
+      fetchJSON(`${BASE_URL}/forecast?${query}&cnt=1`), // only the next 3-hour step
+    ]);
 
-    if (!response.ok) {
-      throw new Error(`HTTP error: ${response.status}`);
-    }
+    const chanceOfRain = Math.round((forecast.list[0].pop ?? 0) * 100);
 
-    const data = await response.json();
-    console.log(data);
-
+    tempHeader.textContent = `${Math.round(current.main.temp)} \u00B0C`;
+    weatherHeader.textContent = current.weather[0].main;
+    precipitation.textContent = `${chanceOfRain}%`;
+    humidity.textContent = `${current.main.humidity}%`;
+    wind.textContent = `${Math.round(current.wind.speed * 3.6)} Km/h`;
   } catch (error) {
     console.error("Failed to fetch weather:", error);
+    weatherHeader.textContent = "Weather unavailable";
   }
 }
 
-getWeather("New delhi")
+getWeather("Delhi");
 
 function getTime() {
   const now = new Date();
 
-  const day = now.toLocaleDateString("en-IN", { weekday: "long" });
+  const day = now.toLocaleDateString("en-IN", { 
+    weekday: "long",
+   });
 
   const time = now
     .toLocaleTimeString("en-IN", {
@@ -286,8 +305,15 @@ function getTime() {
       hour12: true,
     }).toUpperCase();
 
+  const date = now.toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  })
+
   dayTime.textContent = `${day}, ${time}`;
+  dateHeader.textContent = date;
 }
 
 getTime();
-setInterval(getTime, 1000 * 30);
+setInterval(getTime, 1000);
