@@ -274,7 +274,7 @@ async function getWeather(city) {
   try {
     const [current, forecast] = await Promise.all([
       fetchJSON(`${BASE_URL}/weather?${query}`),
-      fetchJSON(`${BASE_URL}/forecast?${query}&cnt=1`), // only the next 3-hour step
+      fetchJSON(`${BASE_URL}/forecast?${query}&cnt=1`),
     ]);
 
     const chanceOfRain = Math.round((forecast.list[0].pop ?? 0) * 100);
@@ -291,7 +291,7 @@ async function getWeather(city) {
   }
 }
 
-getWeather("New Delhi");
+getWeather("bhopal");
 
 function getTime() {
   const now = new Date();
