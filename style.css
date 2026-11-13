@@ -581,23 +581,22 @@ nav {
 }
 
 .theme {
-  height: 30px;
-  width: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--pri);
   padding: 8px;
-  border-radius: 50%;
-  transition: all ease 0.5s;
+  border-radius: 10px;
+  transition: all ease 0.1s;
   cursor: pointer;
 }
 
-.theme i {
-  font-size: 20px;
+.theme h4 {
+  font-size: 15px;
   color: var(--sec);
+  pointer-events: none;
 }
 
 .theme:active {
-  transform: rotate(90deg);
+  scale: 0.96;
 }
