@@ -291,7 +291,7 @@ async function getWeather(city) {
   }
 }
 
-getWeather("bhopal");
+getWeather("New Delhi");
 
 function getTime() {
   const now = new Date();

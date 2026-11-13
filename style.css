@@ -563,28 +563,37 @@ form #mark-box label {
 nav {
   height: 50px;
   width: 100%;
-  padding: 20px 25px;
+  /* padding: 20px; */
 }
 
 .nav-in {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: var(--tri2);
-  padding: 8px;
-  border-radius: 10px;
+  padding:  5px 10px;
+  /* border-radius: 10px; */
 }
 
 .theme {
-  height: 30px;
-  width: 30px;
+  height: 35px;
+  width: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--pri);
+  padding: 8px;
   border-radius: 50%;
+  transition: all ease 0.5s;
+  cursor: pointer;
 }
 
 .theme i {
+  font-size: 20px;
   color: var(--sec);
+}
+
+.theme:active {
+  transform: rotate(90deg);
 }
