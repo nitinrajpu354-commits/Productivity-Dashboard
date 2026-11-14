@@ -327,8 +327,30 @@ function weatherDashboard() {
 
 weatherDashboard();
 
-const theme = document.querySelector(".theme")
+const theme = document.querySelector(".theme");
+const rootElement = document.documentElement;
 
-theme.addEventListener("click", function() {
-  console.log("hello");
-})
+let flag = 0;
+
+theme.addEventListener("click", function () {
+  if (flag === 0) {
+    rootElement.style.setProperty("--pri", "#F8F4E1");
+    rootElement.style.setProperty("--sec", "#222831");
+    rootElement.style.setProperty("--tri1", "#948979");
+    rootElement.style.setProperty("--tri2", "#393E46");
+
+    flag = 1
+  } else if (flag === 1) {
+    rootElement.style.setProperty("--pri", "#F8F4E1");
+    rootElement.style.setProperty("--sec", "#1DCD9F");
+    rootElement.style.setProperty("--tri1", "#222222");
+    rootElement.style.setProperty("--tri2", "#169976");
+    flag = 2
+  } else if(flag === 2) {
+    rootElement.style.setProperty("--pri", "#F8F4E1");
+    rootElement.style.setProperty("--sec", "#222831");
+    rootElement.style.setProperty("--tri1", "#feba17");
+    rootElement.style.setProperty("--tri2", "#74512d");
+    flag = 0
+  }
+});

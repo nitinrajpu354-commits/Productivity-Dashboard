@@ -145,6 +145,8 @@ header .header2 h3 {
   padding: 30px;
   display: none;
   position: absolute;
+  top: 0;
+  z-index: 999;
 }
 
 .back-button {
@@ -389,10 +391,6 @@ form #mark-box label {
   outline: none;
 }
 
-.motivational-fullpage {
-  position: relative;
-}
-
 .motivational-fullpage .motivation-container {
   width: min(600px, 90vw);
   position: absolute;
@@ -513,10 +511,6 @@ form #mark-box label {
 .author h2 {
   font-size: clamp(16px, 2.5vw, 20px);
   text-align: center;
-}
-
-.pomodoro-fullpage {
-  position: relative;
 }
 
 .pomodoro-fullpage h2 {
